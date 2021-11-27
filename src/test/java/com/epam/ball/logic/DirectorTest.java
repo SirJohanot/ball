@@ -1,5 +1,6 @@
 package com.epam.ball.logic;
 
+import com.epam.ball.dao.DataException;
 import com.epam.ball.dao.DataReader;
 import com.epam.ball.entity.Ball;
 import com.epam.ball.entity.Point;
@@ -13,7 +14,7 @@ import java.util.List;
 public class DirectorTest {
 
     @Test
-    public void testShouldReadLinesWhenLinesAreValid(){
+    public void testShouldReadLinesWhenLinesAreValid() throws DataException {
         //given
         DataReader reader= Mockito.mock(DataReader.class);
         List<String> lines=new ArrayList<>();
@@ -32,7 +33,7 @@ public class DirectorTest {
     }
 
     @Test
-    public void testShouldReadLinesWhenSomeLinesAreInvalid(){
+    public void testShouldReadLinesWhenSomeLinesAreInvalid() throws DataException {
         //given
         DataReader reader= Mockito.mock(DataReader.class);
         List<String> lines=new ArrayList<>();

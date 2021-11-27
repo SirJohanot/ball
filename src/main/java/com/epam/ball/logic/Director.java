@@ -1,5 +1,6 @@
 package com.epam.ball.logic;
 
+import com.epam.ball.dao.DataException;
 import com.epam.ball.dao.DataReader;
 import com.epam.ball.entity.Ball;
 
@@ -18,7 +19,7 @@ public class Director {
         this.creator = creator;
     }
 
-    public List<Ball> read(String path){
+    public List<Ball> read(String path) throws DataException {
         List<Ball> balls=new ArrayList<>();
         for (String line:reader.read(path)){
             if (validator.isValidBallLine(line)){
