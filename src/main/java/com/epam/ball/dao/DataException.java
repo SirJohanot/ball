@@ -1,12 +1,16 @@
 package com.epam.ball.dao;
 
-public class DataException extends Exception{
+public class DataException extends Exception {
 
-    public DataException(){
+    public DataException() {
         super();
     }
 
-    public DataException(String message){
+    public DataException(String message) {
         super(message);
+    }
+
+    public DataException(String message, Throwable cause) {
+        super(message, cause);
     }
 }
