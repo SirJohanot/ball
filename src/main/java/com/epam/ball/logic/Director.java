@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Director {
 
-    private DataReader reader;
-    private BallValidator validator;
-    private BallCreator creator;
+    private final DataReader reader;
+    private final BallValidator validator;
+    private final BallCreator creator;
 
     public Director(DataReader reader, BallValidator validator, BallCreator creator) {
         this.reader = reader;
@@ -20,10 +20,11 @@ public class Director {
     }
 
     public List<Ball> read(String path) throws DataException {
-        List<Ball> balls=new ArrayList<>();
-        for (String line:reader.read(path)){
-            if (validator.isValidBallLine(line)){
-                balls.add(creator.create(line));
+        List<Ball> balls = new ArrayList<>();
+        for (String line : reader.read(path)) {
+            if (validator.isValidLine(line)) {
+                Ball ball = creator.create(line);
+                balls.add(ball);
             }
         }
         return balls;
