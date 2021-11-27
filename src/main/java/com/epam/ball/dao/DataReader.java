@@ -9,9 +9,6 @@ public class DataReader {
     public DataReader() {
     }
 
-    /*
-    method to be properly defined
-     */
     public List<String> read(String path) throws DataException {
         List<String> result = new ArrayList<>();
         try {
