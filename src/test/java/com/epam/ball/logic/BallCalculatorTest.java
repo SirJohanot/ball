@@ -8,21 +8,21 @@ import org.junit.Test;
 
 public class BallCalculatorTest {
 
+    private final BallCalculator calculator = new BallCalculator();
+
     @Test
-    public void testShouldCalculateSurfaceAreaWhenBallIsValid() {
+    public void testCalculateSurfaceAreaShouldCalculateWhenBallIsValid() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(3, new Point(0, 0, 0));
         //when
         double surfaceArea = calculator.calculateSurfaceArea(ball);
         //then
-        Assert.assertEquals(36 * Math.PI, surfaceArea, 0);
+        Assert.assertEquals(36 * Math.PI, surfaceArea, 0.00000001);
     }
 
     @Test
-    public void testShouldCalculateVolumeWhenBallIsValid() {
+    public void testCalculateVolumeShouldCalculateWhenBallIsValid() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(3, new Point(0, 0, 0));
         //when
         double volume = calculator.calculateVolume(ball);
@@ -31,33 +31,29 @@ public class BallCalculatorTest {
     }
 
     @Test
-    public void testShouldCalculateVolumeRatioWhenBallCrossesThePlane() {
+    public void testCalculateTheRatioOfVolumesDividedByCoordinatePlaneShouldCalculateWhenBallCrossesThePlane() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(3, new Point(2, 2, 2));
+        double expectedRatio = 0.2611029573;
         //when
-        double volume = 4.0 / 3.0 * Math.PI * Math.pow(ball.getRadius(), 3);
-        double ratio = calculator.calculateTheRatioOfVolumesDividedByCoordinatePlane(ball, CoordinatePlane.XY);
-        double lesserHemisphereVolume = 2.0 / 3.0 * Math.pow(Math.sqrt(5), 2);
+        double actualRatio = calculator.calculateTheRatioOfVolumesDividedByCoordinatePlane(ball, CoordinatePlane.XY);
         //then
-        Assert.assertEquals(lesserHemisphereVolume / (volume - lesserHemisphereVolume), ratio, 0);
+        Assert.assertEquals(expectedRatio, actualRatio, 0.00000001);
     }
 
     @Test
-    public void testShouldReturnZeroAsRatioWhenBallDoesNotCrossThePlane() {
+    public void testCalculateTheRatioOfVolumesDividedByCoordinatePlaneShouldReturnZeroWhenBallDoesNotCrossThePlane() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(1, new Point(2, 2, 2));
         //when
         double ratio = calculator.calculateTheRatioOfVolumesDividedByCoordinatePlane(ball, CoordinatePlane.XY);
         //then
-        Assert.assertEquals(0, ratio, 0);
+        Assert.assertEquals(0, ratio, 0.00000001);
     }
 
     @Test
-    public void testShouldReturnTrueWhenBallIsCrossingThePlane() {
+    public void testIsCrossingTheCoordinatePlaneShouldReturnTrueWhenBallIsCrossingThePlane() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(3, new Point(2, 2, 2));
         //when
         boolean isCrossingPlane = calculator.isCrossingTheCoordinatePlane(ball, CoordinatePlane.XY);
@@ -66,9 +62,8 @@ public class BallCalculatorTest {
     }
 
     @Test
-    public void testShouldReturnFalseWhenBallIsNotCrossingThePlane() {
+    public void testIsCrossingTheCoordinatePlaneShouldReturnFalseWhenBallIsNotCrossingThePlane() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(1, new Point(2, 2, 2));
         //when
         boolean isCrossingPlane = calculator.isCrossingTheCoordinatePlane(ball, CoordinatePlane.XY);
@@ -77,9 +72,8 @@ public class BallCalculatorTest {
     }
 
     @Test
-    public void testShouldReturnTrueWhenBallIsValid() {
+    public void testIsAValidBallShouldReturnTrueWhenBallIsValid() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(1, new Point(2, 2, 2));
         //when
         boolean isValid = calculator.isAValidBall(ball);
@@ -88,9 +82,8 @@ public class BallCalculatorTest {
     }
 
     @Test
-    public void testShouldReturnFalseWhenBallIsNotValid() {
+    public void testIsAValidBallShouldReturnFalseWhenBallIsNotValid() {
         //given
-        BallCalculator calculator = new BallCalculator();
         Ball ball = new Ball(-1, new Point(2, 2, 2));
         //when
         boolean isCrossingPlane = calculator.isAValidBall(ball);
