@@ -14,13 +14,15 @@ public class DataReader {
         try {
             File file = new File(path);
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String temp;
-            while ((temp=bufferedReader.readLine())!=null)
-                result.add(temp);
+            String line= bufferedReader.readLine();
+            while (line!=null) {
+                result.add(line);
+                line= bufferedReader.readLine();
+            }
         } catch (FileNotFoundException e) {
-            throw new DataException("Could not find file by that path");
+            throw new DataException("Could not find file by that path", e);
         } catch (IOException e) {
-            throw new DataException("An I/O error occured");
+            throw new DataException("An I/O error occured", e);
         }
         return result;
     }
