@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class Ball {
 
-    private Point center;
-    private double radius;
+    private final Point center;
+    private final double radius;
 
     public Ball() {
         center = new Point();
+        radius = 0;
     }
 
     public Ball(double radius, Point center) {
@@ -20,22 +21,18 @@ public class Ball {
         return center;
     }
 
-    public void setCenter(Point center) {
-        this.center = center;
-    }
-
     public double getRadius() {
         return radius;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ball ball = (Ball) o;
         return Double.compare(ball.radius, radius) == 0 && center.equals(ball.center);
     }
