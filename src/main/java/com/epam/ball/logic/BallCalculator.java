@@ -19,20 +19,24 @@ public class BallCalculator {
         return result;
     }
 
-    public double calculateTheRatioOfVolumesDividedByCoordinatePlane(Ball ball, CoordinatePlane plane) {
-        if (!isCrossingTheCoordinatePlane(ball, plane)) return 0;
-        Point center = ball.getCenter();
-        double distanceFromCenterToPlane = 0;
+    private double distanceFromPlane(CoordinatePlane plane, Point center) {
         switch (plane) {
             case XY:
-                distanceFromCenterToPlane = center.getZCoordinate();
-                break;
+                return center.getZCoordinate();
             case YZ:
-                distanceFromCenterToPlane = center.getXCoordinate();
-                break;
+                return center.getXCoordinate();
             case XZ:
-                distanceFromCenterToPlane = center.getYCoordinate();
+                return center.getYCoordinate();
         }
+        return 0;
+    }
+
+    public double calculateTheRatioOfVolumesDividedByCoordinatePlane(Ball ball, CoordinatePlane plane) {
+        if (!isCrossingTheCoordinatePlane(ball, plane)) {
+            return 0;
+        }
+        Point center = ball.getCenter();
+        double distanceFromCenterToPlane = distanceFromPlane(plane, center);
         double radius = ball.getRadius();
         double lesserHemisphereRadius = Math.sqrt(Math.pow(radius, 2) - Math.pow(distanceFromCenterToPlane, 2));
         double lesserHemisphereVolume = 2.0 / 3.0 * Math.PI * Math.pow(lesserHemisphereRadius, 3);
@@ -40,23 +44,12 @@ public class BallCalculator {
     }
 
     public boolean isAValidBall(Ball ball) {
-        return (ball.getRadius() > 0);
+        return ball.getRadius() > 0;
     }
 
     public boolean isCrossingTheCoordinatePlane(Ball ball, CoordinatePlane plane) {
         Point center = ball.getCenter();
-        double coordinate = 0;
-        switch (plane) {
-            case XY:
-                coordinate = center.getZCoordinate();
-                break;
-            case YZ:
-                coordinate = center.getXCoordinate();
-                break;
-            case XZ:
-                coordinate = center.getYCoordinate();
-                break;
-        }
+        double coordinate = distanceFromPlane(plane, center);
         double radius = ball.getRadius();
         return Math.abs(coordinate) <= radius;
     }
