@@ -6,41 +6,37 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataReaderTest {
 
+    private final DataReader reader = new DataReader();
+
     @Test
-    public void testShouldReadStringsWhenFileHasOneString() throws DataException {
+    public void testReadShouldReadStringsWhenFileHasOneString() throws DataException {
         //given
-        DataReader reader=new DataReader();
+        List<String> expectedLines = Arrays.asList("1.0 2.0 3.0 4.0");
         //when
-        List<String> strings=new ArrayList<>();
-        strings.add("1.0 2.0 3.0 4.0");
-        List<String> result=reader.read("src/test/resources/oneLineTxtFile");
+        List<String> actualLines = reader.read("src/test/resources/oneLineTxtFile");
         //then
-        Assert.assertEquals(strings, result);
+        Assert.assertEquals(expectedLines, actualLines);
     }
 
     @Test
-    public void testShouldReadStringsWhenFileHasMultipleStrings() throws DataException {
+    public void testReadShouldReadStringsWhenFileHasMultipleStrings() throws DataException {
         //given
-        DataReader reader=new DataReader();
+        List<String> expectedLines = Arrays.asList("1.0 2.0 3.0 4.0", "line", "12345");
         //when
-        List<String> strings=new ArrayList<>();
-        strings.add("1.0 2.0 3.0 4.0");
-        strings.add("line");
-        strings.add("12345");
-        List<String> result=reader.read("src/test/resources/multipleLinesTxtFile");
+        List<String> actualLines = reader.read("src/test/resources/multipleLinesTxtFile");
         //then
-        Assert.assertEquals(strings, result);
+        Assert.assertEquals(expectedLines, actualLines);
     }
 
     @Test(expected = DataException.class)
-    public void testShouldThrowDataExceptionWhenFileNotFound() throws DataException {
+    public void testReadShouldThrowDataExceptionWhenFileNotFound() throws DataException {
         //given
-        DataReader reader=new DataReader();
         //when
-        List<String> result=reader.read("nonExistentFile");
+        List<String> result = reader.read("nonExistentFile");
     }
 }
