@@ -3,19 +3,28 @@ package com.epam.ball.logic;
 import com.epam.ball.entity.Ball;
 import com.epam.ball.entity.CoordinatePlane;
 import com.epam.ball.entity.Point;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class BallCalculator {
+
+    private static final Logger LOGGER = LogManager.getLogger(BallCalculator.class);
 
     public BallCalculator() {
     }
 
     public double calculateSurfaceArea(Ball ball) {
+        LOGGER.info("Started calculating the surface area of " + ball.toString());
         double result = 4.0 * Math.PI * Math.pow(ball.getRadius(), 2);
+        LOGGER.info("Calculated the surface area of " + ball + ": " + result);
         return result;
     }
 
     public double calculateVolume(Ball ball) {
+        LOGGER.info("Started calculating the volume of " + ball.toString());
         double result = 4.0 / 3.0 * Math.PI * Math.pow(ball.getRadius(), 3);
+        LOGGER.info("Calculated the volume of " + ball + ": " + result);
         return result;
     }
 
@@ -32,6 +41,7 @@ public class BallCalculator {
     }
 
     public double calculateTheRatioOfVolumesDividedByCoordinatePlane(Ball ball, CoordinatePlane plane) {
+        LOGGER.info("Started calculating the ratio of volumes of " + ball.toString() + " divided by " + plane.toString() + " plane");
         if (!isCrossingTheCoordinatePlane(ball, plane)) {
             return 0;
         }
@@ -40,7 +50,9 @@ public class BallCalculator {
         double radius = ball.getRadius();
         double lesserHemisphereRadius = Math.sqrt(Math.pow(radius, 2) - Math.pow(distanceFromCenterToPlane, 2));
         double lesserHemisphereVolume = 2.0 / 3.0 * Math.PI * Math.pow(lesserHemisphereRadius, 3);
-        return lesserHemisphereVolume / (calculateVolume(ball) - lesserHemisphereVolume);
+        double ratio = lesserHemisphereVolume / (calculateVolume(ball) - lesserHemisphereVolume);
+        LOGGER.info("Calculated the ratio of volumes of " + ball + " divided by " + plane + " plane: " + ratio);
+        return ratio;
     }
 
     public boolean isAValidBall(Ball ball) {
@@ -48,9 +60,12 @@ public class BallCalculator {
     }
 
     public boolean isCrossingTheCoordinatePlane(Ball ball, CoordinatePlane plane) {
+        LOGGER.info("Started calculating whether " + ball.toString() + " is crossing the " + plane.toString() + " plane");
         Point center = ball.getCenter();
         double coordinate = distanceFromPlane(plane, center);
         double radius = ball.getRadius();
-        return Math.abs(coordinate) <= radius;
+        boolean isCrossing = Math.abs(coordinate) <= radius;
+        LOGGER.info("Calculated whether " + ball + " is crossing the " + plane + " plane: " + isCrossing);
+        return isCrossing;
     }
 }

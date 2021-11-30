@@ -2,20 +2,28 @@ package com.epam.ball.logic;
 
 import com.epam.ball.entity.Ball;
 import com.epam.ball.entity.Point;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class BallCreator {
 
-    private static final String DELIMITER=" ";
+    private static final Logger LOGGER = LogManager.getLogger(BallCreator.class.getName());
+
+    private static final String DELIMITER = " ";
 
     public BallCreator() {
     }
 
-    public Ball create(String line){
-        String[] splitLines=line.split(DELIMITER);
-        double radius=Double.parseDouble(splitLines[0]);
-        double xCoordinate=Double.parseDouble(splitLines[1]);
-        double yCoordinate=Double.parseDouble(splitLines[2]);
-        double zCoordinate=Double.parseDouble(splitLines[3]);
-        return new Ball(radius, new Point(xCoordinate, yCoordinate, zCoordinate));
+    public Ball create(String line) {
+        LOGGER.info("Started creating a Ball from string: " + line);
+        String[] splitLines = line.split(DELIMITER);
+        double radius = Double.parseDouble(splitLines[0]);
+        double xCoordinate = Double.parseDouble(splitLines[1]);
+        double yCoordinate = Double.parseDouble(splitLines[2]);
+        double zCoordinate = Double.parseDouble(splitLines[3]);
+        Ball createdBall = new Ball(radius, new Point(xCoordinate, yCoordinate, zCoordinate));
+        LOGGER.info("A Ball from string '" + line + "' is " + createdBall);
+        return createdBall;
     }
 }

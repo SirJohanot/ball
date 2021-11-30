@@ -3,11 +3,16 @@ package com.epam.ball.logic;
 import com.epam.ball.dao.DataException;
 import com.epam.ball.dao.DataReader;
 import com.epam.ball.entity.Ball;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Director {
+
+    private static final Logger LOGGER = LogManager.getLogger(Director.class.getName());
 
     private final DataReader reader;
     private final BallValidator validator;
@@ -19,13 +24,18 @@ public class Director {
         this.creator = creator;
     }
 
-    public List<Ball> read(String path) throws DataException {
+    public List<Ball> read(String path) {
+        LOGGER.info("Started reading balls from file: " + path);
         List<Ball> balls = new ArrayList<>();
-        for (String line : reader.read(path)) {
-            if (validator.isValidLine(line)) {
-                Ball ball = creator.create(line);
-                balls.add(ball);
+        try {
+            for (String line : reader.read(path)) {
+                if (validator.isValidLine(line)) {
+                    Ball ball = creator.create(line);
+                    balls.add(ball);
+                }
             }
+        } catch (DataException e) {
+            LOGGER.error("Caught " + e);
         }
         return balls;
     }
