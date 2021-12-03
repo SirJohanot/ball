@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Ball {
 
-    private final Point center;
-    private final double radius;
+    private Point center;
+    private double radius;
 
     public Ball() {
         center = new Point();
@@ -23,6 +23,14 @@ public class Ball {
 
     public double getRadius() {
         return radius;
+    }
+
+    public void setCenter(Point center) {
+        this.center = center;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
     }
 
     @Override
