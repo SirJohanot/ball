@@ -25,14 +25,9 @@ public class DataReader {
                 result.add(line);
                 line = bufferedReader.readLine();
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             LOGGER.error("Caught " + e);
-            DataException dataException = new DataException("Could not find file by that path", e);
-            LOGGER.throwing(dataException);
-            throw dataException;
-        } catch (IOException e) {
-            LOGGER.error("Caught " + e);
-            DataException dataException = new DataException("An I/O error occured", e);
+            DataException dataException = new DataException(e.getMessage(), e);
             LOGGER.throwing(dataException);
             throw dataException;
         }
