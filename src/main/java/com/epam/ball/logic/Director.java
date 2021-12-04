@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Director {
 
-    private static final Logger LOGGER = LogManager.getLogger(Director.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(Director.class);
 
     private final DataReader reader;
     private final BallValidator validator;

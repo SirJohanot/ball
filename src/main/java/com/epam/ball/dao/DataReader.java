@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DataReader {
 
-    private static final Logger LOGGER = LogManager.getLogger(DataReader.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(DataReader.class);
 
     public DataReader() {
     }

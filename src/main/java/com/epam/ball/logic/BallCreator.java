@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public class BallCreator {
 
-    private static final Logger LOGGER = LogManager.getLogger(BallCreator.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(BallCreator.class);
 
     private static final String DELIMITER = " ";
 
