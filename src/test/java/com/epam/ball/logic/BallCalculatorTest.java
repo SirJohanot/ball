@@ -9,6 +9,7 @@ import org.junit.Test;
 public class BallCalculatorTest {
 
     private final BallCalculator calculator = new BallCalculator();
+    private static final double DELTA=0.001;
 
     @Test
     public void testCalculateSurfaceAreaShouldCalculateWhenBallIsValid() {
@@ -17,7 +18,7 @@ public class BallCalculatorTest {
         //when
         double surfaceArea = calculator.calculateSurfaceArea(ball);
         //then
-        Assert.assertEquals(36 * Math.PI, surfaceArea, 0.00000001);
+        Assert.assertEquals(36 * Math.PI, surfaceArea, DELTA);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class BallCalculatorTest {
         //when
         double volume = calculator.calculateVolume(ball);
         //then
-        Assert.assertEquals(36.0 * Math.PI, volume, 0.0000000001);
+        Assert.assertEquals(36.0 * Math.PI, volume, DELTA);
     }
 
     @Test
@@ -38,7 +39,7 @@ public class BallCalculatorTest {
         //when
         double actualRatio = calculator.calculateTheRatioOfVolumesDividedByCoordinatePlane(ball, CoordinatePlane.XY);
         //then
-        Assert.assertEquals(expectedRatio, actualRatio, 0.00000001);
+        Assert.assertEquals(expectedRatio, actualRatio, DELTA);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class BallCalculatorTest {
         //when
         double ratio = calculator.calculateTheRatioOfVolumesDividedByCoordinatePlane(ball, CoordinatePlane.XY);
         //then
-        Assert.assertEquals(0, ratio, 0.00000001);
+        Assert.assertEquals(0, ratio, DELTA);
     }
 
     @Test

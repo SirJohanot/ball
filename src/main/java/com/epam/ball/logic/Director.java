@@ -35,7 +35,6 @@ public class Director {
                 }
             }
         } catch (DataException e) {
-            LOGGER.error("Caught " + e);
         }
         return balls;
     }

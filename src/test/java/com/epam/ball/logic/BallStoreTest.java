@@ -8,6 +8,8 @@ import org.junit.Test;
 
 public class BallStoreTest {
 
+    private static final double DELTA=0.001;
+
     @Test
     public void testUpdateShouldUpdateVolumesWhenABallIsChanged(){
         //given
@@ -18,12 +20,12 @@ public class BallStoreTest {
         BallObservable ballObservable2=new BallObservable(3.0, new Point(0.0, 0.0, 0.0), 2);
         ballObservable2.attach(ballStore);
         ballStore.update(ballObservable2);
-        double expectedVolume=267.9466666;
+        double expectedVolume=268.082573106;
         //when
         ballObservable2.setRadius(4.0);
         Parameters actualParameters=ballStore.get(2);
         double actualVolume= actualParameters.getVolume();
         //then
-        Assert.assertEquals(expectedVolume, actualVolume, 1);
+        Assert.assertEquals(expectedVolume, actualVolume, DELTA);
     }
 }

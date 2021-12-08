@@ -26,7 +26,6 @@ public class DataReader {
                 line = bufferedReader.readLine();
             }
         } catch (Exception e) {
-            LOGGER.error("Caught " + e);
             DataException dataException = new DataException(e.getMessage(), e);
             LOGGER.throwing(dataException);
             throw dataException;
