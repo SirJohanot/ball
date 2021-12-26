@@ -17,18 +17,24 @@ public class DataReader {
     public List<String> read(String path) throws DataException {
         LOGGER.info("Started reading data from " + path);
         List<String> result = new ArrayList<>();
+        BufferedReader bufferedReader = null;
         try {
-            File file = new File(path);
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                result.add(line);
-                line = bufferedReader.readLine();
+            try {
+                bufferedReader = new BufferedReader(new FileReader(path));
+                String line = bufferedReader.readLine();
+                while (line != null) {
+                    result.add(line);
+                    line = bufferedReader.readLine();
+                }
+            } catch (Exception e) {
+                throw new DataException(e.getMessage(), e);
+            } finally {
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
             }
-        } catch (Exception e) {
-            DataException dataException = new DataException(e.getMessage(), e);
-            LOGGER.throwing(dataException);
-            throw dataException;
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
         }
         return result;
     }
