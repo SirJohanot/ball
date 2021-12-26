@@ -4,12 +4,10 @@ import java.util.Objects;
 
 public class Ball {
 
-    private Point center;
+    private Point center = new Point();
     private double radius;
 
     public Ball() {
-        center = new Point();
-        radius = 0;
     }
 
     public Ball(double radius, Point center) {
