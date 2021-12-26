@@ -11,9 +11,6 @@ public class BallCalculator {
 
     private static final Logger LOGGER = LogManager.getLogger(BallCalculator.class);
 
-    public BallCalculator() {
-    }
-
     public double calculateSurfaceArea(Ball ball) {
         LOGGER.info("Started calculating the surface area of " + ball.toString());
         double result = 4.0 * Math.PI * Math.pow(ball.getRadius(), 2);
