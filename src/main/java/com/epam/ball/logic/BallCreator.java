@@ -12,9 +12,6 @@ public class BallCreator {
 
     private static final String DELIMITER = " ";
 
-    public BallCreator() {
-    }
-
     public Ball create(String line) {
         LOGGER.info("Started creating a Ball from string: " + line);
         String[] splitLines = line.split(DELIMITER);
