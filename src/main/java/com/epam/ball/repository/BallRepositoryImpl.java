@@ -8,10 +8,6 @@ public class BallRepositoryImpl implements BallRepository {
 
     Map<Integer, BallObservable> balls = new HashMap<>();
 
-    public BallRepositoryImpl(){
-
-    }
-
     @Override
     public void add(final BallObservable ballObservable) {
         balls.put(ballObservable.getId(), ballObservable);
