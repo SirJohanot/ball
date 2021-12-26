@@ -6,7 +6,7 @@ import com.epam.ball.entity.Parameters;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BallStore implements Observer<BallObservable>{
+public class BallStore implements Observer<BallObservable> {
 
     private static BallStore INSTANCE;
 
@@ -14,16 +14,13 @@ public class BallStore implements Observer<BallObservable>{
 
     private final Map<Integer, Parameters> parameters = new HashMap<>();
 
-    private BallStore() {
-    }
-
     public void update(BallObservable ball) {
         double volume = ballCalculator.calculateVolume(ball);
         double surfaceArea = ballCalculator.calculateSurfaceArea(ball);
         parameters.put(ball.getId(), new Parameters(volume, surfaceArea));
     }
 
-    public Parameters get(Object key) {
+    public Parameters get(Integer key) {
         return parameters.get(key);
     }
 
