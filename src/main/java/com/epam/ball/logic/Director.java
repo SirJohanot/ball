@@ -24,17 +24,14 @@ public class Director {
         this.creator = creator;
     }
 
-    public List<Ball> read(String path) {
+    public List<Ball> read(String path) throws DataException {
         LOGGER.info("Started reading balls from file: " + path);
         List<Ball> balls = new ArrayList<>();
-        try {
-            for (String line : reader.read(path)) {
-                if (validator.isValidLine(line)) {
-                    Ball ball = creator.create(line);
-                    balls.add(ball);
-                }
+        for (String line : reader.read(path)) {
+            if (validator.isValidLine(line)) {
+                Ball ball = creator.create(line);
+                balls.add(ball);
             }
-        } catch (DataException e) {
         }
         return balls;
     }
