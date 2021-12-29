@@ -6,8 +6,6 @@ import com.epam.ball.logic.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.TYPE;
-
 public class BallObservable extends Ball implements Observable<BallObservable> {
 
     private final Integer id;

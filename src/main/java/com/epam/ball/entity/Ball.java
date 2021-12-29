@@ -1,7 +1,5 @@
 package com.epam.ball.entity;
 
-import java.util.Objects;
-
 public class Ball {
 
     private Point center = new Point();

@@ -11,9 +11,6 @@ public class DataReader {
 
     private static final Logger LOGGER = LogManager.getLogger(DataReader.class);
 
-    public DataReader() {
-    }
-
     public List<String> read(String path) throws DataException {
         LOGGER.info("Started reading data from " + path);
         List<String> result = new ArrayList<>();

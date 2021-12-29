@@ -3,7 +3,6 @@ package com.epam.ball.logic;
 import com.epam.ball.dao.DataException;
 import com.epam.ball.dao.DataReader;
 import com.epam.ball.entity.Ball;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

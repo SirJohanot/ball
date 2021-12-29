@@ -1,7 +1,5 @@
 package com.epam.ball.entity;
 
-import java.util.Objects;
-
 public class Point {
 
     private final double xCoordinate;
